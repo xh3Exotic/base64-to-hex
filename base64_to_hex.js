@@ -20,7 +20,7 @@
               BASE64: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue:
-                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2P8z8AARAwMjEDAgCQPAASoAgc5g85RAAAAAElFTkSuQmCC",
+                  "data:image/png;base64,...",
               },
             },
           },
@@ -32,7 +32,7 @@
               JSON_STR: {
                 type: Scratch.ArgumentType.STRING,
                 defaultValue:
-                  '{"width":2,"height":2,"pixels":["#FF000080","#00FF00FF","#0000FF00","#FFFFFF66"]}',
+                  '{"width":#,"height":#,"pixels":...}',
               },
             },
           },
