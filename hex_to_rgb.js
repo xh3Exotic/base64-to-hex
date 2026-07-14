@@ -1,13 +1,13 @@
 // made by Gemini NOTHING by me
 
-(function(Scratch) {
+(function (Scratch) {
   'use strict';
 
   class HexToRGBExtension {
     getInfo() {
       return {
         id: 'hextorgb',
-        name: 'Color Converter',
+        name: 'HEX to RGB',
         color1: '#cc5028', // Core block color
         color2: '#ab3e1c', // Darker shade for borders and drop-down arrows
         blocks: [
