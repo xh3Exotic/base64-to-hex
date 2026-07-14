@@ -1,13 +1,13 @@
 // made by Gemini NOTHING by me
 
-(function (Scratch) {
+(function(Scratch) {
   'use strict';
 
   class HexToRGBExtension {
     getInfo() {
       return {
         id: 'hextorgb',
-        name: 'Hex to RGB',
+        name: 'Color Converter',
         color1: '#cc5028', // Core block color
         color2: '#ab3e1c', // Darker shade for borders and drop-down arrows
         blocks: [
@@ -18,7 +18,18 @@
             arguments: {
               HEX: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '#ff00ff'
+                defaultValue: '#cc5028'
+              }
+            }
+          },
+          {
+            opcode: 'convertRGBToHex',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'convert rgb [RGB] to hex',
+            arguments: {
+              RGB: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: '204,80,40'
               }
             }
           }
@@ -26,17 +37,14 @@
       };
     }
 
-    // Helper function to parse hex
+    // Helper: Hex -> RGB
     hexToRgbValues(hex) {
-      // Remove leading # if present
       hex = hex.replace(/^#/, '');
 
-      // Handle shorthand hex (e.g. "03F" -> "0033FF")
       if (hex.length === 3) {
         hex = hex.split('').map(char => char + char).join('');
       }
 
-      // Ensure we have a valid 6-character hex string
       if (hex.length !== 6) {
         return null;
       }
@@ -52,11 +60,38 @@
       return { r, g, b };
     }
 
-    // Returns "204,80,40"
+    // Block 1: Hex to RGB (Returns "204,80,40")
     convertHexToRGB(args) {
       const rgb = this.hexToRgbValues(args.HEX);
-      if (!rgb) return "0,0,0"; // Fallback for invalid inputs
+      if (!rgb) return "0,0,0";
       return `${rgb.r},${rgb.g},${rgb.b}`;
+    }
+
+    // Block 2: RGB to Hex (Returns "#cc5028")
+    convertRGBToHex(args) {
+      // Split the input by commas and clean up spaces
+      const parts = args.RGB.split(',').map(part => part.trim());
+
+      if (parts.length !== 3) {
+        return "#000000"; // Fallback for invalid input formats
+      }
+
+      // Convert parts to numbers, clamping them between 0 and 255
+      const r = Math.max(0, Math.min(255, parseInt(parts[0], 10)));
+      const g = Math.max(0, Math.min(255, parseInt(parts[1], 10)));
+      const b = Math.max(0, Math.min(255, parseInt(parts[2], 10)));
+
+      if (isNaN(r) || isNaN(g) || isNaN(b)) {
+        return "#000000"; // Fallback for NaN cases
+      }
+
+      // Convert numbers to hex and pad with a leading zero if necessary
+      const toHex = (val) => {
+        const hex = val.toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+      };
+
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
     }
   }
 
