@@ -7,7 +7,7 @@
     getInfo() {
       return {
         id: "hexbase64converter",
-        name: "Image Hex & Base64 (Transparent)",
+        name: "Base64 to HEX",
         // Custom color theme
         color1: "#8cda3e", // Primary block color (your requested color)
         color2: "#77ba32", // Slightly darker shade for borders/inputs
