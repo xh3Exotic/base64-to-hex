@@ -18,7 +18,7 @@
             arguments: {
               HEX: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '#cc5028'
+                defaultValue: '#ffffff'
               }
             }
           },
