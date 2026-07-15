@@ -29,7 +29,7 @@
             arguments: {
               RGB: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: '204,80,40'
+                defaultValue: '255,255,255'
               }
             }
           }
